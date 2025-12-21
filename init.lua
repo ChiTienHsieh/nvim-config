@@ -33,6 +33,8 @@ end
 vim.g.python3_host_prog = get_conda_python()
 
 vim.opt.spell = false
+vim.opt.wrap = true       -- 長行自動換行顯示
+vim.opt.linebreak = true  -- 在單字邊界換行，不切斷單字
 
 vim.api.nvim_create_autocmd("VimEnter", {
   pattern = "*", -- 針對所有檔案觸發
@@ -42,3 +44,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
   once = true, -- 這個 autocmd 只需要在 Neovim 啟動時執行一次
 })
+
+-- Run python file with F11 (opens in terminal buffer at bottom)
+vim.api.nvim_set_keymap("n", "<F11>", ":w<CR>:botright split | term python3 %<CR>", { noremap = true, silent = false })
