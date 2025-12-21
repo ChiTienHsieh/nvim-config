@@ -38,6 +38,7 @@ return {
   {
     "gisketch/triforce.nvim",
     dependencies = {
+      "nvzone/volt",  -- UI framework for triforce
       "nvim-lua/plenary.nvim",
     },
     config = function()
