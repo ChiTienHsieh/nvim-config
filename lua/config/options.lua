@@ -20,8 +20,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function()
     vim.diagnostic.config({
       virtual_text = false,
-      signs = true,
-      underline = false, -- 連底線也關掉
+      signs = false,  -- 關掉左邊的 E/W signs
+      underline = false,
       update_in_insert = false,
     })
   end,
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- 也在啟動時設一次
 vim.diagnostic.config({
   virtual_text = false,
-  signs = true,
+  signs = false,  -- 關掉左邊的 E/W signs
   underline = false,
   update_in_insert = false,
 })

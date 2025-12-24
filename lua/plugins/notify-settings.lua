@@ -1,7 +1,18 @@
--- Make notifications last longer
+-- Notification settings via snacks.nvim (LazyVim's notification handler)
 return {
-  "rcarriga/nvim-notify",
+  "folke/snacks.nvim",
   opts = {
-    timeout = 5000, -- 5 seconds (default is 3000ms)
+    notifier = {
+      timeout = 10000, -- 10 seconds
+      width = { min = 40, max = 80 },
+      style = "compact", -- simpler style
+      icons = {
+        error = "",
+        warn = "",
+        info = "",
+        debug = "",
+        trace = "",
+      },
+    },
   },
 }
