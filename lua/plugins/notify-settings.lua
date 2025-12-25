@@ -5,13 +5,14 @@ return {
     notifier = {
       timeout = 10000, -- 10 seconds
       width = { min = 40, max = 80 },
-      style = "compact", -- simpler style
-      icons = {
-        error = "",
-        warn = "",
-        info = "",
-        debug = "",
-        trace = "",
+      style = "fancy", -- pretty gradients and animations
+      -- Using default icons (removed custom ones that caused rendering issues)
+    },
+    styles = {
+      notification = {
+        wo = {
+          winblend = 0, -- fully opaque (prevents background text bleeding through)
+        },
       },
     },
   },

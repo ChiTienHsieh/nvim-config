@@ -20,3 +20,8 @@ vim.keymap.set("n", "<leader>lc", function()
   end
 end, { desc = "Toggle LeetCode mode (disable all AI)" })
 
+-- Notification history (for copying error messages to debug)
+vim.keymap.set("n", "<leader>nt", function()
+  Snacks.notifier.show_history()
+end, { desc = "Notification history" })
+
