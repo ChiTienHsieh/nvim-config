@@ -3,7 +3,7 @@ return {
   "folke/snacks.nvim",
   opts = {
     notifier = {
-      timeout = 10000, -- 10 seconds
+      timeout = 2000, -- 2 seconds (use <leader>nt to see history)
       width = { min = 40, max = 80 },
       style = "fancy", -- pretty gradients and animations
       -- Using default icons (removed custom ones that caused rendering issues)
