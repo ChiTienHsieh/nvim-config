@@ -6,10 +6,10 @@
 vim.g.leetcode_mode = false
 vim.keymap.set("n", "<leader>lc", function()
   vim.g.leetcode_mode = not vim.g.leetcode_mode
-  -- Toggle Copilot ghost text
-  require("copilot.suggestion").toggle_auto_trigger()
-  -- Toggle blink.cmp completion
+  local suggestion = require("copilot.suggestion")
+
   if vim.g.leetcode_mode then
+    suggestion.dismiss()  -- Clear any existing ghost text immediately
     vim.b.completion = false  -- Disable blink for current buffer
     vim.cmd("Copilot disable")  -- Fully disable Copilot (stops blink-copilot too)
     vim.notify("LeetCode Mode ON - All AI completion disabled!", vim.log.levels.WARN)
