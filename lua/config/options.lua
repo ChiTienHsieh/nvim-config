@@ -14,6 +14,9 @@ vim.opt.list = false
 -- Use absolute line numbers (not relative)
 vim.opt.relativenumber = false
 
+-- NEVER spell check. EVER. NO EXCEPTIONS.
+vim.opt.spell = false
+
 -- 關閉 inline diagnostic 顯示（那個超煩的錯誤訊息）
 -- 用 autocmd 確保在 LSP 載入後才設定
 vim.api.nvim_create_autocmd("LspAttach", {
