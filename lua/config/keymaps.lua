@@ -2,26 +2,21 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- LeetCode mode: disable all AI completion (no cheating!)
+-- LeetCode mode: disable completion suggestions (no cheating!)
 vim.g.leetcode_mode = false
 vim.keymap.set("n", "<leader>lc", function()
   vim.g.leetcode_mode = not vim.g.leetcode_mode
-  local suggestion = require("copilot.suggestion")
 
   if vim.g.leetcode_mode then
-    suggestion.dismiss()  -- Clear any existing ghost text immediately
-    vim.b.completion = false  -- Disable blink for current buffer
-    vim.cmd("Copilot disable")  -- Fully disable Copilot (stops blink-copilot too)
-    vim.notify("LeetCode Mode ON - All AI completion disabled!", vim.log.levels.WARN)
+    vim.b.completion = false -- Disable blink for current buffer
+    vim.notify("LeetCode Mode ON - Completion disabled!", vim.log.levels.WARN)
   else
-    vim.b.completion = nil  -- Re-enable blink
-    vim.cmd("Copilot enable")
-    vim.notify("LeetCode Mode OFF - AI completion enabled", vim.log.levels.INFO)
+    vim.b.completion = nil -- Re-enable blink
+    vim.notify("LeetCode Mode OFF - Completion enabled", vim.log.levels.INFO)
   end
-end, { desc = "Toggle LeetCode mode (disable all AI)" })
+end, { desc = "Toggle LeetCode mode (disable completion)" })
 
 -- Notification history (for copying error messages to debug)
 vim.keymap.set("n", "<leader>nt", function()
   Snacks.notifier.show_history()
 end, { desc = "Notification history" })
-

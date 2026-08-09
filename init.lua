@@ -14,12 +14,6 @@ vim.api.nvim_set_keymap("n", "'", "I<ESC>xx", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "kj", "<ESC>", { noremap = true, silent = true })
 
-vim.cmd([[
-call plug#begin('~/.local/share/nvim/plugged')
-Plug 'github/copilot.vim'
-call plug#end()
-]])
-
 local function get_conda_python()
   local handle = io.popen("which python")
   if handle then
