@@ -4,7 +4,7 @@ return {
     opts = {
       linters = {
         markdownlint = {
-          args = {
+          prepend_args = {
             "--disable",
             "MD012",
             "MD013",

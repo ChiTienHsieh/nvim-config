@@ -81,14 +81,14 @@ assert_true(type(local_spec.opts) == "table", "local spec must provide opts")
 assert_true(
   type(local_spec.opts.linters) == "table"
     and type(local_spec.opts.linters.markdownlint) == "table"
-    and type(local_spec.opts.linters.markdownlint.args) == "table",
-  "local opts.linters.markdownlint.args required"
+    and type(local_spec.opts.linters.markdownlint.prepend_args) == "table",
+  "local opts.linters.markdownlint.prepend_args required"
 )
 
 local required_args = { "--disable", "MD012", "MD013", "MD022", "MD033", "MD041" }
 for _, arg in ipairs(required_args) do
   assert_true(
-    contains(local_spec.opts.linters.markdownlint.args, arg),
+    contains(local_spec.opts.linters.markdownlint.prepend_args, arg),
     "local args missing " .. arg
   )
 end
@@ -99,7 +99,7 @@ local autocmd_event_list = nil
 local lint = {
   linters = {
     markdownlint = {
-      -- Stand-in for nvim-lint defaults; force-extend should replace args.
+      -- Locked nvim-lint ca6ea12 default; custom rules must keep --stdin.
       args = { "--stdin" },
     },
   },
@@ -149,6 +149,7 @@ assert_true(lint.linters_by_ft.fish ~= nil, "fish filetype mapping survives")
 
 local args = lint.linters.markdownlint.args
 assert_true(type(args) == "table", "markdownlint.args present after merge")
+assert_true(contains(args, "--stdin"), "default stdin flag survives custom rules")
 for _, arg in ipairs(required_args) do
   assert_true(contains(args, arg), "merged args missing " .. arg)
 end
