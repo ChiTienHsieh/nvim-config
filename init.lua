@@ -14,17 +14,13 @@ vim.api.nvim_set_keymap("n", "'", "I<ESC>xx", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "kj", "<ESC>", { noremap = true, silent = true })
 
-local function get_conda_python()
-  local handle = io.popen("which python")
-  if handle then
-    local python_path = handle:read("*a"):gsub("\n", "")
-    handle:close()
-    return python_path
-  end
-  return "/usr/bin/python3" -- Fallback if Conda is not active
-end
-
-vim.g.python3_host_prog = get_conda_python()
+-- 關掉 remote plugin provider：這份設定沒有任何 plugin 走 pynvim / node-host / perl / ruby，
+-- 開著只會讓 :checkhealth 因為沒裝 pynvim 等模組而報錯（之前用 `which python` 偵測 conda，
+-- 在非互動 shell 裡拿到空字串，provider 直接壞掉）。<F11> 跑 python 走 terminal，不受影響。
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 vim.opt.spell = false
 vim.opt.wrap = true       -- 長行自動換行顯示
